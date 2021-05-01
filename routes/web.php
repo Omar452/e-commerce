@@ -23,5 +23,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+Route::get('/items/{items:slug}', [ItemController::class, 'show'])->name('items.show');
 
 require __DIR__.'/auth.php';

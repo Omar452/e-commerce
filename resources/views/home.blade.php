@@ -1,5 +1,5 @@
 <x-app-layout>
     <x-slot name="content">
-        {{$items}}
+        <p>content</p>
     </x-slot>
 </x-app-layout>
