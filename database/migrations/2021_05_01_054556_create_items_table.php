@@ -20,8 +20,8 @@ class CreateItemsTable extends Migration
             $table->string('description')->nullable();
             $table->float('price');
             $table->integer('quantity');
-            $table->string('image');
-            $table->foreignId('categoty_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('image')->nullable();
+            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
