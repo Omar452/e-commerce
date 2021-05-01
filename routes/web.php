@@ -22,7 +22,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-Route::get('/items/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+Route::prefix('items')->group(function () {
+    Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+});
 
 require __DIR__.'/auth.php';
