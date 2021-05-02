@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="content">
-        <h1 class="text-center mt-5 ">Create a new item</h1>
-        <div class="mt-5 p-5 flex justify-center mx-auto border w-1/2 round-sm bg-gray-50">
+        <x-title>Create a new item</x-title>
+        <div class="mt-5 p-5 flex justify-center mx-auto border w-1/2 round-sm bg-blue-100">
             <form class="w-full" action="{{route('admin.items.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="my-1 flex flex-col">

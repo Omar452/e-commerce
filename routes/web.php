@@ -25,15 +25,16 @@ Route::get('/dashboard', function () {
 
 Route::prefix('items')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/view/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('/view/{item:slug}', [ItemController::class, 'show'])->name('items.show');
 });
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/list', [ItemController::class, 'list'])->name('items.list');
     Route::get('/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('/store', [ItemController::class, 'store'])->name('items.store');
-    Route::get('/edit/{items}', [ItemController::class, 'edit'])->name('items.edit');
-    Route::post('/update/{items}', [ItemController::class, 'update'])->name('items.update');
+    Route::get('/edit/{item}', [ItemController::class, 'edit'])->name('items.edit');
+    Route::post('/update/{item}', [ItemController::class, 'update'])->name('items.update');
+    Route::post('/delete/{item}', [ItemController::class, 'destroy'])->name('items.delete');
 });
 
 require __DIR__.'/auth.php';

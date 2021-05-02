@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ItemController extends Controller
@@ -55,10 +56,36 @@ class ItemController extends Controller
     }
 
     public function edit(Item $item) {
+        $item = Item::findOrFail($item->id);
         return view('items.edit', compact('item'));
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, Item $item) {
+
+        $itemToUpdate = Item::findOrFail($item->id);
+
+       $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'required',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
+            'image' => 'image'
+        ]);
+
+        $data = $request->except(['image']);
+
+        if($request->image){
+            //store image and assign path to variable
+            $imagePath = $request->image->store('images','public');
+            //resize image
+            $image = Image::make(public_path("storage/$imagePath"))->fit(300, 300);
+            $image->save();
+            $itemToUpdate->image = $imagePath;
+        }
+        
+        $itemToUpdate->update($data);
+
+        return redirect()->route('items.show', $item)->with('success','Item updated with success');
 
     }
 
