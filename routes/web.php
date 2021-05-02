@@ -23,12 +23,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-Route::get('/items/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+Route::prefix('items')->group(function () {
+    Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+});
 
-Route::middleware([AdminMiddleware::class])->group(function() {
-    Route::get('/items.create', [ItemController::class, 'create'])->name('items.create');
-    Route::post('items', [ItemController::class, 'store'])->name('items.store');
+Route::group(['prefix' => 'items', "middleware" => 'admin'], function() {
+    Route::get('/list', [ItemController::class, 'list'])->name('items.list');
+    Route::get('/create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/{items}/edit', [ItemController::class, 'edit'])->name('items.edit');
+    Route::post('/{items}', [ItemController::class, 'update'])->name('items.update');
 });
 
 require __DIR__.'/auth.php';

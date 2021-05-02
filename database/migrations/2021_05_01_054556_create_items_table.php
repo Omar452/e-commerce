@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('description')->nullable();
-            $table->float('price');
+            $table->integer('price');
             $table->integer('quantity');
             $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
