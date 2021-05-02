@@ -18,4 +18,12 @@ class ItemController extends Controller
         $item = Item::where('slug', $item)->first();
         return view('items.show', compact('item'));
     }
+
+    public function create(){
+        return view('items.create');
+    }
+
+    public function store(Request $request){
+        
+    }
 }

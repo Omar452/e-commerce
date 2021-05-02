@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 Route::get('/items/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+
+Route::middleware([AdminMiddleware::class])->group(function() {
+    Route::get('/items.create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('items', [ItemController::class, 'store'])->name('items.store');
+});
 
 require __DIR__.'/auth.php';
