@@ -25,15 +25,15 @@ Route::get('/dashboard', function () {
 
 Route::prefix('items')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/{items:slug}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('/view/{items:slug}', [ItemController::class, 'show'])->name('items.show');
 });
 
-Route::group(['prefix' => 'items', "middleware" => 'admin'], function() {
+Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/list', [ItemController::class, 'list'])->name('items.list');
     Route::get('/create', [ItemController::class, 'create'])->name('items.create');
-    Route::post('/', [ItemController::class, 'store'])->name('items.store');
-    Route::get('/{items}/edit', [ItemController::class, 'edit'])->name('items.edit');
-    Route::post('/{items}', [ItemController::class, 'update'])->name('items.update');
+    Route::post('/store', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/edit/{items}', [ItemController::class, 'edit'])->name('items.edit');
+    Route::post('/update/{items}', [ItemController::class, 'update'])->name('items.update');
 });
 
 require __DIR__.'/auth.php';

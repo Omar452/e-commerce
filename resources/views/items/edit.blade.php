@@ -2,7 +2,7 @@
     <x-slot name="content">
         <h1 class="text-center mt-5 ">Edit item</h1>
         <div class="mt-5 p-5 flex justify-center mx-auto border w-1/2 round-sm bg-gray-50">
-            <form class="w-full" action="{{route('items.store')}}" method="POST" enctype="multipart/form-data">
+            <form class="w-full" action="#" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="my-1 flex flex-col">
                     <x-label for="name">Name:</x-label>

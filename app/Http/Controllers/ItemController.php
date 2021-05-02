@@ -64,6 +64,6 @@ class ItemController extends Controller
 
     public function list() {
         $items = Item::paginate(20);
-        return view('list', compact('items'));
+        return view('items.list', compact('items'));
     }
 }
