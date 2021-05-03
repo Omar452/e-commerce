@@ -87,4 +87,11 @@ class ItemController extends Controller
         $items = Item::paginate(20);
         return view('items.list', compact('items'));
     }
+
+    public function delete(Item $item)
+    {
+        $item = Item::findOrFail($item->id);
+        $item->delete();
+        return back()->with('success', 'Item deleted with success.');
+    }
 }

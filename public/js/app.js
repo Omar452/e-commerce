@@ -3800,7 +3800,17 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); //show delete modal
+
+
+var modal = document.querySelector('.modal');
+var modalTogglers = document.querySelectorAll('.modalToggler');
+modalTogglers.forEach(function (toggler) {
+  toggler.addEventListener('click', function () {
+    console.log("click");
+    modal.classList.toggle('hidden');
+  });
+});
 
 /***/ }),
 

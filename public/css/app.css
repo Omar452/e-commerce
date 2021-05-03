@@ -32088,6 +32088,25 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  vertical-align: middle;
+}
+
+.modal div{
+  position: relative;
+  top: 20%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -187942,4 +187961,3 @@ select {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-
