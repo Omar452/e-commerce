@@ -33,7 +33,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::post('/store', [ItemController::class, 'store'])->name('items.store');
     Route::get('/edit/{item}', [ItemController::class, 'edit'])->name('items.edit');
     Route::post('/update/{item}', [ItemController::class, 'update'])->name('items.update');
-    Route::post('/delete/{item}', [ItemController::class, 'destroy'])->name('items.delete');
+    Route::post('/delete/{item}', [ItemController::class, 'delete'])->name('items.delete');
 });
 
 require __DIR__.'/auth.php';
