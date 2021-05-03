@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ItemController extends Controller
@@ -22,23 +21,16 @@ class ItemController extends Controller
         return view('items.show', compact('item'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('items.create');
     }
 
-    public function store(Request $request){
-    
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'category' => 'required',
-            'price' => 'required|integer',
-            'quantity' => 'required|integer',
-            'image' => 'required|image'
-        ]);
-        
+    public function store(ItemRequest $request)
+    {
         //store image and assign path to variable
         $imagePath = $request->image->store('images','public');
-        
+
         //resize image
         $image = Image::make(public_path("storage/$imagePath"))->fit(300, 300);
         $image->save();
@@ -50,27 +42,20 @@ class ItemController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'category_id' => $request->category,
-             'image' => $imagePath
+            'image' => $imagePath
         ]);
         return redirect()->route('items.show', $item)->with('success','Item created with success');
     }
 
-    public function edit(Item $item) {
+    public function edit(Item $item)
+    {
         $item = Item::findOrFail($item->id);
         return view('items.edit', compact('item'));
     }
 
-    public function update(Request $request, Item $item) {
-
+    public function update(ItemRequest $request, Item $item)
+    {
         $itemToUpdate = Item::findOrFail($item->id);
-
-       $request->validate([
-            'name' => 'required|string|max:255',
-            'category' => 'required',
-            'price' => 'required|integer',
-            'quantity' => 'required|integer',
-            'image' => 'image'
-        ]);
 
         $data = $request->except(['image']);
 
@@ -82,14 +67,14 @@ class ItemController extends Controller
             $image->save();
             $itemToUpdate->image = $imagePath;
         }
-        
+
         $itemToUpdate->update($data);
 
         return redirect()->route('items.show', $item)->with('success','Item updated with success');
-
     }
 
-    public function list() {
+    public function list()
+    {
         $items = Item::paginate(20);
         return view('items.list', compact('items'));
     }
