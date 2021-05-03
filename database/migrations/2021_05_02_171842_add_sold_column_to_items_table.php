@@ -14,7 +14,7 @@ class AddSoldColumnToItemsTable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->integer('sold')->after('quantity')->default(0);
+            $table->unsignedInteger('sold')->after('quantity')->default(0);
         });
     }
 

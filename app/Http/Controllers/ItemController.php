@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use Illuminate\Support\Str;
+use App\Http\Requests\ItemRequest;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ItemController extends Controller
@@ -66,7 +67,9 @@ class ItemController extends Controller
         $data = $request->except(['image']);
 
         if($request->image){
-            //store image and assign path to variable
+            //delete old item image
+            File::delete(public_path('storage/' . $itemToUpdate->image));
+            //store new image and assign path to variable
             $imagePath = $request->image->store('images','public');
             //resize image
             $image = Image::make(public_path("storage/$imagePath"))->fit(300, 300);
