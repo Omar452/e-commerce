@@ -28,9 +28,7 @@
                 </div>
                 <div class="my-2 flex flex-col">
                     <x-label for="description">Description:</x-label>
-                    <textarea class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="description" id="description" cols="30" rows="5">
-                        {{old('description') ? : $item->description}}
-                    </textarea>
+                    <textarea class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="description" id="description" cols="30" rows="5">{{old('description') ? : $item->description}}</textarea>
                     @error('description')
                     <div class="text-red-600 pl-1">
                         {{$message}}

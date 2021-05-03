@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ItemRequest extends FormRequest
@@ -23,12 +24,16 @@ class ItemRequest extends FormRequest
      */
     public function rules()
     {
+        $route = Route::currentRouteName();
+        $imageValidation = $route == 'admin.items.store' ? 'required|image' : 'image';
+    
         return [
             'name' => 'required|string|max:255',
             'category' => 'required',
             'price' => 'required|integer',
             'quantity' => 'required|integer',
-            'image' => 'required|image'
+            'image' => $imageValidation
         ];
+        
     }
 }

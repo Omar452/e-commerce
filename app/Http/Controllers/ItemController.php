@@ -28,6 +28,12 @@ class ItemController extends Controller
 
     public function store(ItemRequest $request)
     {
+        //check if item already exists in DB
+        $checkRecord = Item::where('slug' , Str::slug($request->name, '-'))->first();
+        if($checkRecord){
+            return back()->with('error', 'Item already exists');
+        }
+
         //store image and assign path to variable
         $imagePath = $request->image->store('images','public');
 

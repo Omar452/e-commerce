@@ -24,6 +24,7 @@
 
             <!-- Page Content -->
             <main>
+                <x-session-div />
                 {{ $content }}
             </main>
         </div>
