@@ -11,3 +11,6 @@ modalTogglers.forEach(toggler => {
         modal.classList.toggle('hidden');
     })
 });
+
+
+

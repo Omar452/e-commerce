@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -84,7 +85,8 @@ class ItemController extends Controller
 
     public function list()
     {
-        $items = Item::paginate(20);
+        $items = Item::with('category')->where('quantity', '>', 0)->paginate(20);
+
         return view('items.list', compact('items'));
     }
 
