@@ -8,7 +8,10 @@
                 </a>
             </div>
 
-            <x-search-item />
+            <div class="flex flex-row">
+                <x-search-item />
+            </div>
+            
             
             <x-items-table :items="$items" />
             

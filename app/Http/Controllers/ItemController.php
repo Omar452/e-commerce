@@ -13,7 +13,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::with('category')->where('quantity', '>', 0)->paginate(10);
+        $items = Item::with('category')->where('quantity', '>', 0)->paginate(20);
         return view('items.index', compact('items'));
     }
 
@@ -98,8 +98,13 @@ class ItemController extends Controller
         request()->validate([
             'search' => 'string|max:50'
         ]);
+
+        if(request()->search){
+            $items = Item::where('slug', 'LIKE', '%' . Str::slug(request()->search) . '%')->paginate(20);
+        }else{
+            $items = Item::with('category')->paginate(20);
+        }
         
-        $items = Item::where('slug', 'LIKE', '%' . Str::slug(request()->search) . '%')->paginate(20);
 
         if(request()->user()->role === 'admin'){
             return view('items.list', compact('items'));
