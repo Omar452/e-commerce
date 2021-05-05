@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -32,7 +31,7 @@ class ItemController extends Controller
     {
         //check if item already exists in DB
         $checkRecord = Item::where('slug' , Str::slug($request->name, '-'))->first();
-        if($checkRecord){
+        if($checkRecord) {
             return back()->with('error', 'Item already exists');
         }
 
@@ -63,22 +62,20 @@ class ItemController extends Controller
 
     public function update(ItemRequest $request, Item $item)
     {
-        $itemToUpdate = Item::findOrFail($item->id);
-
         $data = $request->except(['image']);
 
         if($request->image){
             //delete old item image
-            File::delete(public_path('storage/' . $itemToUpdate->image));
+            File::delete(public_path('storage/' . $item->image));
             //store new image and assign path to variable
             $imagePath = $request->image->store('images','public');
             //resize image
             $image = Image::make(public_path("storage/$imagePath"))->fit(300, 300);
             $image->save();
-            $itemToUpdate->image = $imagePath;
+            $item->image = $imagePath;
         }
 
-        $itemToUpdate->update($data);
+        $item->update($data);
 
         return redirect()->route('items.show', $item)->with('success','Item updated with success');
     }
@@ -92,7 +89,6 @@ class ItemController extends Controller
 
     public function delete(Item $item)
     {
-        $item = Item::findOrFail($item->id);
         $item->delete();
         return back()->with('success', 'Item deleted with success.');
     }

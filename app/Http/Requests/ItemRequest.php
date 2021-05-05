@@ -24,9 +24,8 @@ class ItemRequest extends FormRequest
      */
     public function rules()
     {
-        $route = Route::currentRouteName();
-        $imageValidation = $route == 'admin.items.store' ? 'required|image' : 'image';
-    
+        $imageValidation = Route::currentRouteName() == 'admin.items.store' ? 'required|image' : 'image';
+
         return [
             'name' => 'required|string|max:255',
             'category' => 'required',
@@ -34,6 +33,6 @@ class ItemRequest extends FormRequest
             'quantity' => 'required|integer|gt:0',
             'image' => $imageValidation
         ];
-        
+
     }
 }
