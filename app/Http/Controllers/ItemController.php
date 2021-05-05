@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -90,6 +91,19 @@ class ItemController extends Controller
     public function delete(Item $item)
     {
         $item->delete();
-        return back()->with('success', 'Item deleted with success.');
+        return redirect()->back()->with('success', 'Item deleted with success.');
+    }
+
+    public function search(){
+        request()->validate([
+            'search' => 'string|max:50'
+        ]);
+        
+        $items = Item::where('slug', 'LIKE', '%' . Str::slug(request()->search) . '%')->paginate(20);
+
+        if(request()->user()->role === 'admin'){
+            return view('items.list', compact('items'));
+        }
+        return view('items.index', compact('items'));
     }
 }

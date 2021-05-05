@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 Route::prefix('items')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
     Route::get('/view/{item:slug}', [ItemController::class, 'show'])->name('items.show');
+    Route::get('/search', [ItemController::class, 'search'])->name('items.search');
 });
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
