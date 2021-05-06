@@ -14,7 +14,7 @@ class AddSoftDeletesColumnToItemsTable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 
