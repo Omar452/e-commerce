@@ -6,6 +6,7 @@
                     <nav>
                         <ul>
                             <li><a href="{{route('admin.items.list')}}">Items list</a></li>
+                            <li><a href="{{route('admin.categories.list')}}">Categories list</a></li>
                         </ul>
                     </nav>
                 </div>

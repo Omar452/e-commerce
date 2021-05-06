@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -30,8 +29,9 @@ class ItemController extends Controller
 
     public function store(ItemRequest $request)
     {
+        $slug = Str::slug($request->name, '-');
         //check if item already exists in DB
-        $checkRecord = Item::where('slug' , Str::slug($request->name, '-'))->first();
+        $checkRecord = Item::where('slug' , $slug)->first();
         if($checkRecord) {
             return back()->with('error', 'Item already exists');
         }
@@ -45,7 +45,7 @@ class ItemController extends Controller
 
         $item = Item::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => $slug,
             'description' => $request->description,
             'price' => $request->price,
             'quantity' => $request->quantity,

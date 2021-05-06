@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,16 @@ Route::prefix('items')->group(function () {
 });
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('/list', [ItemController::class, 'list'])->name('items.list');
-    Route::get('/create', [ItemController::class, 'create'])->name('items.create');
-    Route::post('/store', [ItemController::class, 'store'])->name('items.store');
-    Route::get('/edit/{item}', [ItemController::class, 'edit'])->name('items.edit');
-    Route::put('/update/{item}', [ItemController::class, 'update'])->name('items.update');
-    Route::delete('/delete/{item}', [ItemController::class, 'delete'])->name('items.delete');
+    Route::get('/items/list', [ItemController::class, 'list'])->name('items.list');
+    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/items/store', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/items/edit/{item}', [ItemController::class, 'edit'])->name('items.edit');
+    Route::put('/items/update/{item}', [ItemController::class, 'update'])->name('items.update');
+    Route::delete('/items/delete/{item}', [ItemController::class, 'delete'])->name('items.delete');
+
+    Route::get('/categories/list', [CategoryController::class, 'list'])->name('categories.list');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 });
 
 require __DIR__.'/auth.php';
