@@ -54,4 +54,11 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories.list')->with('success', 'Category updated with success');
     }
+
+    public function delete(Category $category)
+    {
+        $category =  Category::findOrFail($category->id);
+        $category->delete();
+        return redirect()->back()->with('success', 'Category deleted with success');
+    }
 }

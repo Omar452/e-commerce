@@ -21,6 +21,7 @@
                     <td class="border px-4 py-4 text-center text-blue-400 hover:text-blue-800"><a href="{{route('admin.categories.edit', $category)}}"><i class="fas fa-edit"></i></a></td>
                     <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalToggler"><i class="fas fa-trash"></i></i></a></td>
                 </tr>
+                <x-modal :category="$category" />
                 @endforeach
             </table>       
         </div>
