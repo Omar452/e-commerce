@@ -38,4 +38,24 @@ class CategoryController extends Controller
 
         return view('categories.list', compact('categories'))->with('success', 'Category created with success');
     }
+
+    public function edit(Category $category)
+    {
+        $category = Category::findOrFail($category->id);
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $category = Category::findOrFail($category->id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
+        ]);
+
+        $categories = Category::with('items')->get();
+
+        return view('categories.list', compact('categories'))->with('success', 'Category updated with success');
+    }
 }

@@ -40,6 +40,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::get('/categories/list', [CategoryController::class, 'list'])->name('categories.list');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
 require __DIR__.'/auth.php';

@@ -24,7 +24,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha|max:50'
+            'name' => 'required|string|max:50'
         ];
     }
 }
