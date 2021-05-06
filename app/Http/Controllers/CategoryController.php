@@ -34,9 +34,7 @@ class CategoryController extends Controller
             'slug' => $slug
         ]);
 
-        $categories = Category::with('items')->get();
-
-        return view('categories.list', compact('categories'))->with('success', 'Category created with success');
+        return redirect()->route('admin.categories.list')->with('success', 'Category created with success');
     }
 
     public function edit(Category $category)
@@ -54,8 +52,6 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name, '-')
         ]);
 
-        $categories = Category::with('items')->get();
-
-        return view('categories.list', compact('categories'))->with('success', 'Category updated with success');
+        return redirect()->route('admin.categories.list')->with('success', 'Category updated with success');
     }
 }

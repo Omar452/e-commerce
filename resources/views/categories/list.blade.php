@@ -23,8 +23,6 @@
                 </tr>
                 @endforeach
             </table>       
-            
-            
         </div>
     </x-slot>
 </x-app-layout>

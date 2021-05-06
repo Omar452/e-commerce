@@ -52,7 +52,7 @@ class ItemController extends Controller
             'category_id' => $request->category,
             'image' => $imagePath
         ]);
-        return redirect()->route('items.show', $item)->with('success','Item created with success');
+        return redirect()->route('admin.items.list')->with('success','Item created with success');
     }
 
     public function edit(Item $item)
@@ -78,7 +78,7 @@ class ItemController extends Controller
 
         $item->update($data);
 
-        return redirect()->route('items.show', $item)->with('success','Item updated with success');
+        return redirect()->route('admin.items.list')->with('success','Item updated with success');
     }
 
     public function list()
