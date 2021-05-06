@@ -105,10 +105,12 @@ class ItemController extends Controller
             $items = Item::with('category')->paginate(20);
         }
         
-
-        if(request()->user()->role === 'admin'){
-            return view('items.list', compact('items'));
+        if(request()->user()){
+            if(request()->auth()->user()->role === 'admin'){
+                return view('items.list', compact('items'));
+            }
         }
+        
         return view('items.index', compact('items'));
     }
 }
