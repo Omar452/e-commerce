@@ -19,13 +19,18 @@
                     <td class="border px-8 py-4">{{$category->name}}</td>
                     <td class="border px-8 py-4">{{$category->items->count()}}</td>
                     <td class="border px-4 py-4 text-center text-blue-400 hover:text-blue-800"><a href="{{route('admin.categories.edit', $category)}}"><i class="fas fa-edit"></i></a></td>
-                    <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalToggler"><i class="fas fa-trash"></i></i></a></td>
+                    <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800">
+                        <a href='#deleteModal' data-toggle="modal" data-target="#deleteModal{{ $category->id }}"><i class="fas fa-trash"></i></a>
+
+                        <x-delete-modal
+                            :description="$category->name"
+                            :id="$category->id"
+                            :modelInstance="$category"
+                            deleteRoute="admin.categories.delete"
+                        />
+                    </td>
                 </tr>
-                <x-delete-modal
-                    :description="$category->name"
-                    :modelInstance="$category"
-                    deleteRoute="admin.categories.delete"
-                />
+
                 @endforeach
             </table>
         </div>

@@ -1,4 +1,4 @@
-<div class="modal hidden">
+<div class="modal fade" id="deleteModal{{ $id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="bg-white p-5 w-1/3 mx-auto rounded-md">
         <div class="text-right">
             <a class="modalToggler"><i class="fas fa-times"></i></a>
