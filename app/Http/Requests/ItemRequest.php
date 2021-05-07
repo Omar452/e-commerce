@@ -29,7 +29,7 @@ class ItemRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'category' => 'required',
-            'price' => 'required|integer|gt:0',
+            'price' => 'required|numeric|gt:0',
             'quantity' => 'required|integer|gt:0',
             'image' => $imageValidation
         ];
