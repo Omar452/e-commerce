@@ -106,7 +106,7 @@ class ItemController extends Controller
         }
         
         if(request()->user()){
-            if(request()->auth()->user()->role === 'admin'){
+            if(request()->user()->role === 'admin'){
                 return view('items.list', compact('items'));
             }
         }
