@@ -39,14 +39,11 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        $category = Category::findOrFail($category->id);
         return view('categories.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, Category $category)
     {
-        $category = Category::findOrFail($category->id);
-
         $category->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-')
@@ -57,7 +54,6 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
-        $category =  Category::findOrFail($category->id);
         $category->delete();
         return redirect()->back()->with('success', 'Category deleted with success');
     }

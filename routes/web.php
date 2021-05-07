@@ -42,7 +42,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], f
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('/categories/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('categories/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('categories/delete{item}', [CategoryController::class, 'delete'])->name('categories.delete');
+    Route::delete('/categories/delete/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
 });
 
 require __DIR__.'/auth.php';
