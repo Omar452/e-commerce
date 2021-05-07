@@ -22,8 +22,12 @@
         <td class="border px-8 py-4">{{$item->sold}}</td>
         <td width="50" class="border px-8 py-4"><img src="{{ $item->image ? asset('storage/' . $item->image) : 'https://via.placeholder.com/150' }}" image"></td>
         <td class="border px-4 py-4 text-center text-blue-400 hover:text-blue-800"><a href="{{route('admin.items.edit', $item->id)}}"><i class="fas fa-edit"></i></a></td>
-        <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalToggler"><i class="fas fa-trash"></i></i></a></td>
-        <x-modal :item="$item" />
+        <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalOpener"><i class="fas fa-trash"></i></i></a></td>
+        <x-delete-modal
+            :description="$item->name"
+            :modelInstance="$item"
+            deleteRoute="admin.items.delete"
+        />
     </tr>
     @endforeach
 </table>

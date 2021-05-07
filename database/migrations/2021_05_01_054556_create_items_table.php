@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('quantity');
             $table->string('image')->nullable();
-            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

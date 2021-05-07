@@ -3798,19 +3798,37 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    forEach = _require.forEach;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); //show delete modal
 
 
-var modal = document.querySelector('.modal');
-var modalTogglers = document.querySelectorAll('.modalToggler');
-modalTogglers.forEach(function (toggler) {
-  toggler.addEventListener('click', function () {
-    console.log("click");
-    modal.classList.toggle('hidden');
+var modals = document.getElementsByClassName('modal');
+var modalOpeners = document.querySelectorAll('.modalOpener');
+var buttonTogglers = document.querySelectorAll('.buttonToggler');
+var crossTogglers = document.querySelectorAll('.crossToggler');
+
+var _loop = function _loop(i) {
+  modalOpeners[i].addEventListener('click', function () {
+    console.log('click');
+    modals[i].classList.toggle('hidden');
   });
-});
+  buttonTogglers[i].addEventListener('click', function () {
+    console.log('click');
+    modals[i].classList.toggle('hidden');
+  });
+  crossTogglers[i].addEventListener('click', function () {
+    console.log('click');
+    modals[i].classList.toggle('hidden');
+  });
+};
+
+for (var i = 0; i < modals.length; i++) {
+  _loop(i);
+}
 
 /***/ }),
 

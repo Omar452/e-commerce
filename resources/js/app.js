@@ -1,16 +1,28 @@
+const { forEach } = require('lodash');
+
 require('./bootstrap');
 
 require('alpinejs');
 
 //show delete modal
-let modal = document.querySelector('.modal');
-let modalTogglers = document.querySelectorAll('.modalToggler');
-modalTogglers.forEach(toggler => {
-    toggler.addEventListener('click', () => {
-        console.log("click")
-        modal.classList.toggle('hidden');
-    })
-});
+let modals = document.getElementsByClassName('modal');
+let modalOpeners = document.querySelectorAll('.modalOpener');
+let buttonTogglers = document.querySelectorAll('.buttonToggler');
+let crossTogglers = document.querySelectorAll('.crossToggler');
 
+for(let i = 0; i < modals.length; i++){
+    modalOpeners[i].addEventListener('click', function(){
+        console.log('click')
+        modals[i].classList.toggle('hidden');
+    });
+    buttonTogglers[i].addEventListener('click', function(){
+        console.log('click')
+        modals[i].classList.toggle('hidden');
+    });
+    crossTogglers[i].addEventListener('click', function(){
+        console.log('click')
+        modals[i].classList.toggle('hidden');
+    });
+}
 
 

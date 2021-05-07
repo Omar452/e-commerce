@@ -19,7 +19,7 @@
                     <td class="border px-8 py-4">{{$category->name}}</td>
                     <td class="border px-8 py-4">{{$category->items->count()}}</td>
                     <td class="border px-4 py-4 text-center text-blue-400 hover:text-blue-800"><a href="{{route('admin.categories.edit', $category)}}"><i class="fas fa-edit"></i></a></td>
-                    <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalToggler"><i class="fas fa-trash"></i></i></a></td>
+                    <td class="border px-4 py-4 text-center text-red-400 hover:text-red-800"><a class="modalOpener"><i class="fas fa-trash"></i></i></a></td>
                 </tr>
                 <x-delete-modal
                     :description="$category->name"

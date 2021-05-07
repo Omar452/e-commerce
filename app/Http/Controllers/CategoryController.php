@@ -54,6 +54,9 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
+        if($category->items->count() > 0){
+            return redirect()->back()->with('error', 'You cannot delete a category containing items');
+        }
         $category->delete();
         return redirect()->back()->with('success', 'Category deleted with success');
     }
