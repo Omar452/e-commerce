@@ -17,7 +17,7 @@
         <td class="border px-8 py-4 text-blue-800"><a class="font-bold hover:underline" href="{{route('items.show', $item)}}">{{$item->name}}</a></td>
         <td class="border px-8 py-4">{{$item->category->name}}</td>
         <td class="border px-8 py-4">{{$item->description}}</td>
-        <td class="border px-8 py-4">{{$item->price / 100}}</td>
+        <td class="border px-8 py-4">{{$item->price}}</td>
         <td class="border px-8 py-4">{{$item->quantity}}</td>
         <td class="border px-8 py-4">{{$item->sold}}</td>
         <td width="50" class="border px-8 py-4"><img src="{{ $item->image ? asset('storage/' . $item->image) : 'https://via.placeholder.com/150' }}" image"></td>

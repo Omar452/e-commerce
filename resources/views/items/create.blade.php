@@ -37,7 +37,7 @@
                 </div>
                 <div class="my-2 flex flex-col">
                     <x-label for="price">Price:</x-label>
-                    <x-input class="@error('price') is-invalid @enderror" id="price" type="number" name="price" placeholder="Price in cents e.g. 999, 1499" value="{{old('price')}}"/>
+                    <x-input class="@error('price') is-invalid @enderror" id="price" type="number" name="price" value="{{old('price')}}"/>
                     @error('price')
                     <div class="text-red-600 pl-1">
                         {{$message}}

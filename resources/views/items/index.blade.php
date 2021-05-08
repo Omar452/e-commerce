@@ -17,7 +17,7 @@
                                     <p class="text-gray-400">{{$item->category->name}}</p>
                                 </div>
                                 <div>
-                                    <p class="text-lg">£{{$item->price / 100}}</p>
+                                    <p class="text-lg">£{{$item->price}}</p>
                                 </div>
                             </div>
                         </div>
