@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->json('items');
             $table->integer('total_items')->unsigned();
             $table->float('total_amount')->unsigned();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 
@@ -29,6 +30,12 @@ Route::prefix('items')->group(function () {
     Route::get('/search', [ItemController::class, 'search'])->name('items.search');
 });
 
+Route::prefix('cart')->group(function() {
+    Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+    Route::post('/add/{item}', [CartController::class, 'add'])->name('cart.add');
+});
+
+//admin routes
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('/items/list', [ItemController::class, 'list'])->name('items.list');
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');

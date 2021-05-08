@@ -27,13 +27,16 @@
                     </x-nav-link>
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
-                    </x-nav-link>    
+                    </x-nav-link>   
                     @endguest
                     @auth
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endauth
+                    <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
+                        {{ __('Cart') }}
+                    </x-nav-link> 
                 </div>
                 @auth
                 <x-dropdown align="right" width="48">

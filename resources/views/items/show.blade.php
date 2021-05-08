@@ -11,9 +11,10 @@
                         <p class="text-gray-500 text-lg">£{{$item->price}}</p>
                     </div>
                     <div>
-                        <form action="" method="POST">
+                        <form action="{{route('cart.add', $item)}}" method="POST">
+                            @csrf
                             <div class="flex flex-col">
-                                <x-input name="quantity" id="quantity" class="py-2" type="number" min="1" max="{{$item->quantity}}" />
+                                <x-input name="quantity" value=1 id="quantity" class="py-2" type="number" min="1" max="{{$item->quantity}}" />
                                 <button class="text-center mt-2 py-1 bg-gray-900 rounded-md text-white">Add to <i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </form>
