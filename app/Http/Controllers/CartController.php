@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function show(){
+        if(Session::has('cart')){
+            $cart = session('cart');
+            dd(json_decode($cart->items));
+            return view('cart', compact('cart'));
+        }
         return view('cart');
     }
 
@@ -22,7 +27,7 @@ class CartController extends Controller
                     'items' => json_encode([
                         $item->name => [
                             'quantity' => $request->quantity,
-                            'price' => $item->price
+                            'price' => $item->price 
                         ]
                     ]),
                     'total_items' => $request->quantity,
