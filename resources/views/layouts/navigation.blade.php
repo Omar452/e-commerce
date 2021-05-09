@@ -34,7 +34,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
+                    <x-nav-link :href="route('showCart')" :active="request()->routeIs('showCart')">
                         {{ __('Cart') }}
                     </x-nav-link> 
                 </div>

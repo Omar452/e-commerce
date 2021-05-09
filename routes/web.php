@@ -30,10 +30,9 @@ Route::prefix('items')->group(function () {
     Route::get('/search', [ItemController::class, 'search'])->name('items.search');
 });
 
-Route::prefix('cart')->group(function() {
-    Route::get('/', [CartController::class, 'show'])->name('cart.show');
-    Route::post('/add/{item}', [CartController::class, 'add'])->name('cart.add');
-});
+
+Route::get('/cart', [CartController::class, 'showCart'])->name('showCart');
+Route::get('/add-to-cart/{item}', [CartController::class, 'addToCart'])->name('addToCart');
 
 //admin routes
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
