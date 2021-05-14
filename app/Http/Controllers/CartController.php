@@ -34,4 +34,14 @@ class CartController extends Controller
         Session::put('cart', $cart);
         return redirect()->back()->with('success', 'Item removed with success');
     }
+
+    public function removeItem(Item $item)
+    {
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $cart->remove($item);
+
+        Session::put('cart', $cart);
+        return redirect()->back()->with('success', 'Item removed with success');
+    }
 }

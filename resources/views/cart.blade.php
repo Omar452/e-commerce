@@ -21,7 +21,9 @@
                     </td>
                     <td class="border text-center px-8 py-4">£{{$value['price']}}</td>
                     <td class="border text-center px-8 py-4">£{{$value['price'] * $value['quantity']}}</td>
-                    <td class="border text-center px-2 py-1"><i class="text-red-600 fas fa-trash"></i></td>
+                    <td class="border text-center px-2 py-1">
+                        <a href="{{route('removeItem', $value['item'])}}"><i class="text-red-600 fas fa-trash"></i></a>
+                    </td>
                 </tr>
                 @endforeach             
             </table>

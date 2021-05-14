@@ -32,8 +32,9 @@ Route::prefix('items')->group(function () {
 
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('showCart');
-Route::get('/add-to-cart/{item}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('subtract-item/{item}', [CartController::class, 'subtractItem'])->name('subtractItem');
+Route::get('/add-item/{item}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/subtract-item/{item}', [CartController::class, 'subtractItem'])->name('subtractItem');
+Route::get('/remove-item/{item}', [CartController::class, 'removeItem'])->name('removeItem');
 
 //admin routes
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {

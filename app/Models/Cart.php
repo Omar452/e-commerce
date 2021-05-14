@@ -55,6 +55,14 @@ class Cart
         $this->calculateTotalAmount();
     }
 
+    public function remove(Item $item)
+    {  
+        unset($this->items[$item->id]);
+    
+        $this->calculateTotalItems();
+        $this->calculateTotalAmount();
+    }
+
     public function calculateTotalItems()
     {
         $total = 0;
@@ -78,6 +86,4 @@ class Cart
         $this->total_tax = $total * $this->tax;
         $this->priceExcTax = $this->total_price - $this->total_tax;
     }
-
-    
 }
