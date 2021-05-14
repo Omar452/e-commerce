@@ -21,6 +21,12 @@
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('Shop') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('showCart')" :active="request()->routeIs('showCart')">
+                        <i class="text-xl fas fa-shopping-cart"></i>
+                        @if(session('cart'))
+                        <span class="rounded-full h-5 w-5 bg-blue-700 text-white text-center">{{Session::get('cart')->total_items}}</span>
+                        @endif
+                    </x-nav-link> 
                     @guest
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{ __('Login') }}
@@ -34,9 +40,6 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('showCart')" :active="request()->routeIs('showCart')">
-                        {{ __('Cart') }}
-                    </x-nav-link> 
                 </div>
                 @auth
                 <x-dropdown align="right" width="48">

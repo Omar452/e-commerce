@@ -22,7 +22,16 @@ class CartController extends Controller
         $cart->add($item);
 
         Session::put('cart', $cart);
-
         return redirect()->back()->with('success', 'Item added to cart with success');
+    }
+
+    public function subtractItem(Item $item)
+    {
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $cart->subtract($item);
+
+        Session::put('cart', $cart);
+        return redirect()->back()->with('success', 'Item removed with success');
     }
 }
