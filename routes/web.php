@@ -31,10 +31,10 @@ Route::prefix('items')->group(function () {
 });
 
 
-Route::get('/cart', [CartController::class, 'showCart'])->name('showCart');
-Route::get('/add-item/{item}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('/subtract-item/{item}', [CartController::class, 'subtractItem'])->name('subtractItem');
-Route::get('/remove-item/{item}', [CartController::class, 'removeItem'])->name('removeItem');
+Route::get('/cart', [CartController::class, 'showCart'])->name('carts.show');
+Route::get('/cart/add/{item}', [CartController::class, 'addToCart'])->name('carts.add');
+Route::get('/cart/subtract/{item}', [CartController::class, 'subtractItem'])->name('carts.subtract');
+Route::get('/cart/remove/{item}', [CartController::class, 'removeItem'])->name('carts.remove');
 
 //admin routes
 Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
