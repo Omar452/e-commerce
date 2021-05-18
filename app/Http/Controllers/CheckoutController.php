@@ -17,15 +17,15 @@ class CheckoutController extends Controller
 
     public function checkDetails(Request $request)
     {
-        $request->validate([
-            'name' =>'required',
-            'address' =>'required',
-            'post_code' =>'required',
-            'city' =>'required',
+        $data = $request->validate([
+            'name' =>'required|string',
+            'address' =>'required|string:max:255',
+            'post_code' =>'required|Regex:/^(\w{3,4})\s(\w{3,4})$/i',
+            'city' =>'required|string|max:58',
         ]);
 
         $user = User::find($request->user()->id);
-        
+        $user->details = json_encode($data);
 
         return redirect()->route('checkout.payment');
     }
