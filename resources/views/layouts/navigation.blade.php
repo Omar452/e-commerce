@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('Shop') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('carts.show')" :active="request()->routeIs('showCart')">
+                    <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
                         <i class="text-xl fas fa-shopping-cart"></i>
                         @if(session('cart'))
                         <span class="rounded-full h-5 w-5 bg-blue-700 text-white text-center">{{Session::get('cart')->total_items}}</span>

@@ -11,7 +11,7 @@
                         <p class="text-gray-500 text-lg">£{{$item->price}}</p>
                     </div>
                     <div>
-                        <form action="{{route('carts.add', $item)}}" method="GET">
+                        <form action="{{route('cart.add', $item)}}" method="GET">
                             @csrf
                             <div class="flex flex-col">
                                 <button class="text-center mt-2 py-1 bg-gray-900 rounded-md text-white">Add to <i class="fas fa-shopping-cart"></i></button>

@@ -23,14 +23,14 @@ class CategorySeeder extends Seeder
                 'name' => 'T-shirt red',
                 'slug' => 't-shirt-red',
                 'description' => 't-shirt color: blue',
-                'price' => 999,
+                'price' => 9.99,
                 'quantity' => 10
             ]),
             new Item([
                 'name' => 'T-shirt blue',
                 'slug' => 't-shirt-blue',
                 'description' => 't-shirt color: red',
-                'price' => 999,
+                'price' => 9.99,
                 'quantity' => 10
             ])
         ]);
