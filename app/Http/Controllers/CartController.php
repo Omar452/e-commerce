@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\Stripe;
 use App\Models\Cart;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -43,18 +44,5 @@ class CartController extends Controller
 
         Session::put('cart', $cart);
         return redirect()->back()->with('success', 'Item removed with success');
-    }
-
-    public function checkout()
-    {
-        if(!Session::has('cart')) {
-            return back()->with('error', 'Your shopping cart is empty');
-        }
-        return view('checkout');
-    }
-
-    public function payment()
-    {
-        
     }
 }

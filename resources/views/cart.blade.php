@@ -1,6 +1,6 @@
 <x-app-layout>    
     <x-slot name="content">
-        @if(session('cart')->total_items > 0)
+        @if(session('cart') && Session::get('cart')->total_items > 0)
         <div class="flex flex-col mx-auto container">
             <x-title>Shopping Cart</x-title>
             <table class="shadow-lg bg-white">
@@ -35,7 +35,7 @@
                     <p class="px-8 py-4"> Payable VAT 20%: £{{Session::get('cart')->total_tax}}</p>
                     <p class="px-8 py-4">Total Amount:  £{{Session::get('cart')->total_price}}</p>
                     <div class="text-center  px-8 py-4">
-                        <a class="font-semibold bg-gray-800 rounded-md text-white py-2 px-4" href="{{route('cart.checkout')}}">Checkout</a>    
+                        <a class="font-semibold bg-gray-800 rounded-md text-white py-2 px-4" href="{{route('checkout.details')}}">Checkout</a>    
                     </div>
                 </div>
             </div>
