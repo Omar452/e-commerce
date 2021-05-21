@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 
@@ -17,9 +18,7 @@ use App\Http\Controllers\CheckoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ItemController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,17 +32,26 @@ Route::prefix('items')->group(function () {
 });
 
 //Cart routes
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/add/{item}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart/subtract/{item}', [CartController::class, 'subtractItem'])->name('cart.subtract');
 Route::get('/cart/remove/{item}', [CartController::class, 'removeItem'])->name('cart.remove');
 
 //Checkout routes
-Route::middleware('auth')->group(function() {
-    Route::get('/checkout/details', [CheckoutController::class, 'details'])->name('checkout.details');
-    Route::post('/checkout/check-details', [CheckoutController::class, 'checkDetails'])->name('checkout.check.details');
-    Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('checkout.payment');
+Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function() {
+    Route::get('/details', [CheckoutController::class, 'details'])->name('checkout.details');
+    Route::post('/check-details', [CheckoutController::class, 'checkDetails'])->name('checkout.check.details');
+    Route::get('/payment', [CheckoutController::class, 'payment'])->name('checkout.payment');
+    Route::get('/thank-you', function(){
+        return view('checkout.thank-you');
+    });
 });
+
+//Orders routes
+Route::group(['middleware' => 'auth', 'prefix' => 'orders'], function() {
+    Route::post('store', [OrderController::class, 'store'])->name('orders.store');
+});
+
 
 
 

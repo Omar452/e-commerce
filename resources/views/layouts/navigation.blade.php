@@ -15,14 +15,11 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex mr-4">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('Shop') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
-                        <i class="text-xl fas fa-shopping-cart"></i>
+                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                        Cart <i class="ml-2 text-xl fas fa-shopping-cart"></i>
                         @if(session('cart'))
                         <span class="rounded-full h-5 w-5 bg-blue-700 text-white text-center">{{Session::get('cart')->total_items}}</span>
                         @endif

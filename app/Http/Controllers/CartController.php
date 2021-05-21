@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    public function showCart()
+    public function index()
     {
         return view('cart');
     }

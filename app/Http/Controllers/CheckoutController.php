@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function details()
     {
         return view('checkout.details');
@@ -36,10 +40,10 @@ class CheckoutController extends Controller
         Stripe::setApiKey('sk_test_51IsQsoEsVakBTXvJRM6vd6cDNmlDSA8vDuKFvXmdCfCjrvjHKM2a8CtA3R1wQ6hIuyzUEffC4dkf0tsuMKjI5skg00iFKjKFIp');
         $intent = PaymentIntent::create([
             'amount' => Session::get('cart')->total_price * 100,
-            'currency' => 'gbp',
+            'currency' => 'gbp'
         ]);
         $clientSecret = $intent['client_secret'];
 
         return view('checkout.payment', compact('clientSecret'));
-    } 
+    }
 }
