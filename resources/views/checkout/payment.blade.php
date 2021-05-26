@@ -79,7 +79,7 @@
                             }
                         ).then( data => {
                             console.log(data);
-                            window.location.href = 'thank-you';
+                            //window.location.href = 'thank-you';
                         }).catch( error => {
                             console.log(error);
                         });

@@ -15,6 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number')->unique();
+            $table->foreignId('user_id')->constrain('users')->onUpdate('cascade');
+            $table->json('order_details');
+            $table->string('status')->default(null);
             $table->timestamps();
         });
     }

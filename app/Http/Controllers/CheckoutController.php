@@ -24,13 +24,13 @@ class CheckoutController extends Controller
         $data = $request->validate([
             'name' =>'required|string',
             'address' =>'required|string:max:255',
-            'post_code' =>'required|Regex:/^(\w{3,4})\s(\w{3,4})$/i',
+            'post_code' =>'required|Regex:/^(\w{2,4})\s(\w{3,4})$/i',
             'city' =>'required|string|max:58',
         ]);
-
-        $user = User::find($request->user()->id);
-        $user->details = json_encode($data);
-
+        
+        $request->user()->details = json_encode($data);
+        $request->user()->save();
+    
         return redirect()->route('checkout.payment');
     }
 
