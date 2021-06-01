@@ -2,6 +2,7 @@
     <x-slot name="content">
         <div class="flex flex-col mx-auto container">
             <x-title>Checkout payment</x-title>
+            <div id="error-payment" class="bg-red-400 text-red-700 rounded-sm w-1/3 mx-auto p-5"></div>
             <div class="w-1/3 mx-auto">
                 <form id="payment-form" action="{{route('orders.store')}}" class="my-5 p-5 rounded-md">
                     @csrf
@@ -47,6 +48,7 @@
         });
 
         let form = document.getElementById('payment-form');
+        let errorDiv = document.querySelector('#error-payment');
         //send request to stripe on form submit
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -57,7 +59,7 @@
                 }
             }).then(function(result) {
                 if (result.error) {
-                    console.log(result.error.message);
+                    errorDiv.innerHTML = `<p>${result.error.message}</p>`;
                     form.submit.disabled = false;
                 } else {
                     //if payment succeed, send request to checkout controller
@@ -65,7 +67,6 @@
                         let paymentIntent = result.paymentIntent;
                         let url = form.action;
                         let csrf = form._token.value;
-                    
                         fetch(
                             url,
                             {
@@ -79,9 +80,10 @@
                             }
                         ).then( data => {
                             console.log(data);
-                            //window.location.href = 'thank-you';
+                            window.location.href = 'thank-you';
                         }).catch( error => {
                             console.log(error);
+
                         });
                     }
                 }
